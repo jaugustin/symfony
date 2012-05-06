@@ -492,6 +492,7 @@ class PropertyPath implements \IteratorAggregate
                 $previousValue = $this->readProperty($objectOrArray, $currentIndex);
 
                 if (is_array($previousValue) || $previousValue instanceof Traversable) {
+                    $previousValue = is_object($previousValue)? clone $previousValue : $previousValue;
                     foreach ($previousValue as $previousItem) {
                         foreach ($value as $key => $item) {
                             if ($item === $previousItem) {
